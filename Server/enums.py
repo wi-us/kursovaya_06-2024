@@ -1,0 +1,5 @@
+CODE_200 = "200 OK"
+CODE_400 = "400 Bad Request"
+CODE_401 = "401 Unauthorized"
+CODE_404 = "404 Not Found"
+CODE_501 = "501 Not Implemented"

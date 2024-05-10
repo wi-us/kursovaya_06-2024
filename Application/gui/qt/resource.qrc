@@ -1,0 +1,12 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>../../resources/icons/white-arrow-3_left.png</file>
+    <file>../../resources/icons/white-arrow-3_right.png</file>
+  </qresource>
+  <qresource prefix="photos">
+    <file>../../resources/photos/jungle_1.png</file>
+    <file>../../resources/photos/jungle_1-1.png</file>
+    <file>../../resources/photos/jungle_2.png</file>
+    <file>../../resources/photos/jungle_3.png</file>
+  </qresource>
+</RCC>

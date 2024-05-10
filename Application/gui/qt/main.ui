@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>windowMain</class>
+ <widget class="QMainWindow" name="windowMain">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>900</width>
+    <height>1163</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>CREEPER</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>-1</x>
+      <y>-1</y>
+      <width>901</width>
+      <height>1171</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QFrame" name="frame">
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <widget class="QFrame" name="frame_Header">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>901</width>
+          <height>101</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <widget class="QPushButton" name="pushButton">
+         <property name="geometry">
+          <rect>
+           <x>20</x>
+           <y>10</y>
+           <width>311</width>
+           <height>71</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Главная</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButton_Meals">
+         <property name="geometry">
+          <rect>
+           <x>350</x>
+           <y>10</y>
+           <width>251</width>
+           <height>71</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Меню</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButton_Booking">
+         <property name="geometry">
+          <rect>
+           <x>620</x>
+           <y>10</y>
+           <width>261</width>
+           <height>71</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Забронировать</string>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QStackedWidget" name="stackedWidget_Pages">
+        <property name="geometry">
+         <rect>
+          <x>-1</x>
+          <y>79</y>
+          <width>901</width>
+          <height>1141</height>
+         </rect>
+        </property>
+        <property name="contextMenuPolicy">
+         <enum>Qt::DefaultContextMenu</enum>
+        </property>
+        <property name="acceptDrops">
+         <bool>false</bool>
+        </property>
+        <widget class="QWidget" name="page_aboutUs">
+         <widget class="QFrame" name="frame_Body">
+          <property name="geometry">
+           <rect>
+            <x>70</x>
+            <y>0</y>
+            <width>761</width>
+            <height>941</height>
+           </rect>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <widget class="QFrame" name="frame_Description">
+           <property name="geometry">
+            <rect>
+             <x>29</x>
+             <y>29</y>
+             <width>701</width>
+             <height>231</height>
+            </rect>
+           </property>
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <widget class="QLabel" name="label_Title">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>20</y>
+              <width>661</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Название ресторана</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_Description">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>60</y>
+              <width>661</width>
+              <height>151</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Описание ресторана</string>
+            </property>
+           </widget>
+          </widget>
+          <widget class="QWidget" name="widget_Photos" native="true">
+           <property name="geometry">
+            <rect>
+             <x>30</x>
+             <y>290</y>
+             <width>701</width>
+             <height>401</height>
+            </rect>
+           </property>
+           <widget class="QPushButton" name="pushButton_NextImage">
+            <property name="geometry">
+             <rect>
+              <x>530</x>
+              <y>0</y>
+              <width>171</width>
+              <height>401</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="pushButton_PrevImage">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>171</width>
+              <height>401</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </widget>
+         </widget>
+        </widget>
+        <widget class="QWidget" name="page_meals">
+         <widget class="QFrame" name="frame_3">
+          <property name="geometry">
+           <rect>
+            <x>70</x>
+            <y>20</y>
+            <width>761</width>
+            <height>941</height>
+           </rect>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <widget class="QLabel" name="label_Meals">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>30</y>
+             <width>721</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>14</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>Наше меню:</string>
+           </property>
+          </widget>
+          <widget class="QWidget" name="widget_3" native="true">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>70</y>
+             <width>721</width>
+             <height>851</height>
+            </rect>
+           </property>
+          </widget>
+         </widget>
+        </widget>
+        <widget class="QWidget" name="page_booking">
+         <widget class="QFrame" name="frame_2">
+          <property name="geometry">
+           <rect>
+            <x>70</x>
+            <y>19</y>
+            <width>761</width>
+            <height>941</height>
+           </rect>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <widget class="QComboBox" name="comboBox_ChooseRestaraunt">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>80</y>
+             <width>721</width>
+             <height>31</height>
+            </rect>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_ChooseRestaraunt">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>30</y>
+             <width>721</width>
+             <height>31</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>14</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>Выберите ресторан:</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_ChooseTableAndDate">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>130</y>
+             <width>721</width>
+             <height>41</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>14</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>Выберите место:</string>
+           </property>
+          </widget>
+          <widget class="QWidget" name="widget" native="true">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>180</y>
+             <width>721</width>
+             <height>741</height>
+            </rect>
+           </property>
+           <widget class="QWidget" name="widget_2" native="true">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>50</y>
+              <width>701</width>
+              <height>641</height>
+             </rect>
+            </property>
+            <widget class="QPushButton" name="pushButton_floor_1">
+             <property name="geometry">
+              <rect>
+               <x>660</x>
+               <y>60</y>
+               <width>31</width>
+               <height>31</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>1</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="pushButton_floor_2">
+             <property name="geometry">
+              <rect>
+               <x>660</x>
+               <y>100</y>
+               <width>31</width>
+               <height>31</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>2</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="pushButton_floor_3">
+             <property name="geometry">
+              <rect>
+               <x>660</x>
+               <y>140</y>
+               <width>31</width>
+               <height>31</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>3</string>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QPushButton" name="pushButton_ConfirmTable">
+            <property name="geometry">
+             <rect>
+              <x>580</x>
+              <y>702</y>
+              <width>121</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Забронировать</string>
+            </property>
+           </widget>
+          </widget>
+         </widget>
+        </widget>
+       </widget>
+       <zorder>stackedWidget_Pages</zorder>
+       <zorder>frame_Header</zorder>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+ </widget>
+ <resources>
+  <include location="resource.qrc"/>
+ </resources>
+ <connections/>
+</ui>
