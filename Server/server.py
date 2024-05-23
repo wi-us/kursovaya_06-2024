@@ -10,7 +10,7 @@ def deserializeJson(string : str) -> str:
     return json.loads(string)
 
 IP = '0.0.0.0'
-PORT = 8001
+PORT = 8080
 
 PROTOCOL = "HTTP/1.1"
 CONTENT = "Content-Type: application/json;"

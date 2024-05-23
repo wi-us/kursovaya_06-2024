@@ -2,7 +2,7 @@ import telebot
 from telebot.types import InputMediaPhoto
 import random
 from telebot import types
-token="7181433193:AAG07jOHaRsdlqwMzv2kJNtSogayq_GvcHQ"
+token="7181433193:AAHR6Q80Vm4mR2fduA3g_soOlp_G1hl7Uyw"
 bot=telebot.TeleBot(token)
 @bot.message_handler(commands=['start'])
 def start_message(message):
@@ -48,6 +48,8 @@ def send_food(message):
         bot.send_message(message.chat.id,f'{foodChoice}\nБеее!? Тебе не повезло, возьми что-нибудь по вкуснее!')
     elif foodChoice=='Подозрительный суп':
         bot.send_message(message.chat.id,f'{foodChoice}\nВау! Мы даже не знаем что с тобой случиться когда съешь! Бери на свой страх и риск!')
+    elif foodChoice=='Зачарованное золотое яблоко':
+        bot.send_message(message.chat.id,f'{foodChoice}\nНе поломай зубы!')
     else:
         bot.send_message(message.chat.id,f'{foodChoice}\nМММ! Это звучит вкусно! Давай попробуй!')
         
