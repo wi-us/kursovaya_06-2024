@@ -17,13 +17,19 @@ class Tables(BaseModel):
 
     @classmethod
     def createTable(cls, **kwargs):
+        test = kwargs
+        if test['vipStatus'] == 'False':
+            test['vipStatus'] = 0
+        else:
+            test['vipStatus'] = 1
+        kwargs = test
         return cls.create(**kwargs)
 
     @classmethod
     def deleteTable(cls, table_id):
-        query = cls.delete().where(cls.id == table_id)
-        query = Booking.delete().where(Booking.guest == cls)
-        query.execute()
+        cls.delete().where(cls.id == table_id).execute()
+        Booking.delete().where(Booking.table == cls).execute()
+        
 
     @classmethod
     def getAllTables(cls):
@@ -68,14 +74,13 @@ class Users(BaseModel):
 
     @classmethod
     def createTable(cls, **kwargs):
+        test = kwargs
         return cls.create(**kwargs)
 
     @classmethod
     def deleteTableByID(cls, table_id):
-        query = cls.delete().where(cls.id == table_id)
-        query = Booking.delete().where(Booking.guest == cls)
-        
-        query.execute()
+        cls.delete().where(cls.id == table_id).execute()
+        Booking.delete().where(Booking.guest == cls).execute()
 
     @classmethod
     def getAllTables(cls):
@@ -84,7 +89,6 @@ class Users(BaseModel):
         else:
             _arr = []
             for val in cls.select():
-
                     _arr.append({"id": val.id, 
                                  "name": val.name, 
                                  "surname": val.surname, 
@@ -113,8 +117,19 @@ class Users(BaseModel):
         query.execute()
 
     @classmethod
-    def getTable(cls, id):
-        result = cls.select().where(cls.id == id)
+    def getTable(cls, id, phone = None):
+        if phone != None:
+            try:
+                result = cls.select().get(cls.phone == str(phone))
+                print(result.id)
+                test = result.id
+            except:
+                result = cls.select().where(cls.phone.contains(str(phone))).get()
+                test = result.id
+                print(result.id)
+        else:
+            result = cls.select().where(cls.id == id)
+
         return {"id": result.id, 
                 "name": result.name, 
                 "surname": result.surname, 
@@ -129,32 +144,38 @@ class Booking(BaseModel):
 
     @classmethod
     def createTable(cls, **kwargs):
-        table = Tables.get(Tables.id == kwargs["table"].id)
-        guests = Users.get(Users.id == kwargs["guest"].id)
+        test = kwargs
+        table = Tables.select().where(Tables.id == kwargs["table"])
+        guests = Users.select().where(Users.id == kwargs["guest"])
         
         return cls.create(table=table, guest=guests, bookedDate=kwargs["bookedDate"], guestsCount=kwargs["guestsCount"])
 
     @classmethod
     def deleteTableByID(cls, table_id):
-        cls.delete().where(cls.id == table_id)
-        query = cls.delete()
-        query.execute()
+        cls.delete().where(cls.id == table_id).execute()
 
     @classmethod
     def getAllTables(cls):
         if cls.select().count() == 0:
             return EMPTY
+        
         else:
             _arr = []
             for val in cls.select():
                     try:
                         _arr.append({"id": val.id, 
-                                     "table": val.table, 
-                                     "guestid": val.guest, 
-                                     "bookedDate": val.bookedDate, 
+                                     "table": {'id': val.table.id,
+                                                "guestCountMax": val.table.guestCountMax, 
+                                                "vipStatus": val.table.vipStatus}, 
+                                     "guest": {"id": val.guest.id, 
+                                                "name": val.guest.name, 
+                                                "surname": val.guest.surname, 
+                                                "phone": val.guest.phone, 
+                                                "email": val.guest.email},
+                                     "bookedDate": (val.bookedDate).strftime('%Y-%m-%d %H:%M:%S'), 
                                      "guestsCount": val.guestsCount})
                     except:
-                        cls.deleteTable(val.id)
+                        cls.deleteTableByID(val.id)
             return _arr
     
     @classmethod
@@ -194,7 +215,7 @@ class Booking(BaseModel):
                 "bookedDate": result.bookedDate, 
                 "guestsCount": result.guestsCount}
     
-
-Tables().create_table()
-Users().create_table()
-Booking().create_table()
+def createTables():
+    Tables().create_table()
+    Users().create_table()
+    Booking().create_table()
