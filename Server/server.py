@@ -2,7 +2,7 @@ import socket
 import datetime
 import route
 import json
-
+from database.database import createTables
 def serializeJson(object) -> str:
     return json.dumps(object)
 
@@ -28,8 +28,10 @@ class Server:
     def startServer(cls):
         try:
             server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            server.bind((IP, PORT))
+            #server.bind((IP, PORT))
+            server.bind("https://vh432.timeweb.ru")
             server.listen()
+            createTables()
 
             while 1:
                 print("Working...")
@@ -54,25 +56,16 @@ class Server:
             _index = requestData.find('{')
             _json = requestData[_index-1:]
             json = deserializeJson(_json[1:])
-            response = route.routeToAPI(_data[0], _data[1][1:], **json)
+            response = route.routeToAPI(_data[0], _data[1], **json)
         else:
-            response = route.routeToAPI(_data[0], _data[1][1:])
+            response = route.routeToAPI(_data[0], _data[1])
         
         #answer = serializeJson(response['answer'])
         #_ans = serializeJson(response['answer']).encode('utf-8')
         #_a = bytearray(serializeJson(response['answer']).encode('utf-8'))
-        return f"{PROTOCOL} {response['code']}\r\n{HEADERS}\r\n\r\n".encode('utf-8') + bytearray(serializeJson(response['answer']).encode('utf-8'))
-        try:
-            with open('views' + path, 'rb') as file:
-                response = file.read()
-            return f"{PROTOCOL} {CODE_200}\r\n{HEADERS}\r\n\r\n".encode('utf-8') + response 
-        except: #страница не найдена
-            message = "ТЕСТПИРОВАИНВШГЛЫМДЫвлм"
-            return (f"{PROTOCOL} {CODE_404}\r\n{HEADERS}\r\n\r\n" + message).encode('utf-8')
-        
+        print(serializeJson(response['answer']).encode('utf-8'))
+        return f"{PROTOCOL} {response['code']}\r\n{HEADERS}\r\n\r\n".encode('utf-8') + bytearray(serializeJson(response['answer']).encode('utf-8'))     
     
 
-
-    
 if __name__ == "__main__":
     Server().startServer()

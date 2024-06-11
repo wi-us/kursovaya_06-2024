@@ -37,23 +37,32 @@ class API:
             """
 
             try:
-                db.Users().createTable()
+                db.Users().createTable(**kwargs)
                 return {'code': CODE_200, 'answer': "Success"}
             except:
                 return {'code': CODE_400, 'answer': None}
-       
+        
+        def find(phone : int):
+            try:
+                data = db.Users().getTable(id = 0, phone = phone)
+                #response = dict(**data)
+                return {'code': CODE_200, 'answer': data['id']}
+            except:
+                return {'code': CODE_400, 'answer': None}
+        
         def get(id : int) -> str:
             """
             Method:         GET\n
             Description:    get a user row by id\n
             Return:         Serialized JSON
             """
+            
             try:
                 data = db.Users().getTable(id)
-                response = dict(**data)
+                #response = dict(**data)
                 return {'code': CODE_200, 'answer': data}
             except:
-                return CODE_400
+                return {'code': CODE_400, 'answer': None}
         
         def get() -> str:
             """
@@ -63,7 +72,6 @@ class API:
             """
             try:
                 data = db.Users().getAllTables()
-                response = dict(**data)
                 return {'code': CODE_200, 'answer': data}
             except:
                 return {'code': CODE_400, 'answer': None}
@@ -95,19 +103,6 @@ class API:
             except:
                 return {'code': CODE_400, 'answer': None}
         
-        def delete(ids : list[int]) -> None:
-            """
-            Method:         DELETE\n
-            Description:    delete user rows by ids\n
-            Return:         None
-            """
-
-            try:
-                for i in range(len(ids)):
-                    db.Users().deleteTableByID(ids[i])
-                return {'code': CODE_200, 'answer': "Success"}
-            except:
-                return {'code': CODE_400, 'answer': None}
 
 
     class Table:
@@ -177,20 +172,6 @@ class API:
             except:
                 return {'code': CODE_400, 'answer': None}
         
-        def delete(ids : list[int]) -> None:
-            """
-            Method:         DELETE\n
-            Description:    delete table rows by ids\n
-            Return:         None
-            """
-
-            try:
-                for i in range(len(ids)):
-                    db.Tables().deleteTable(ids[i])
-                return {'code': CODE_200, 'answer': "Success"}
-            except:
-                return {'code': CODE_400, 'answer': None}
-
     class Booking:
         path = "/booking/"
         def add(**kwargs) -> None:
@@ -231,6 +212,16 @@ class API:
             except:
                 return {'code': CODE_400, 'answer': None}
         
+        def getBookedDates():
+            try:
+                data = db.Booking().getAllTables()
+                arr = []
+                for item in data:
+                    arr.append({'bookedDate':item['bookedDate'], 'table':item['table']})
+                return {'code': CODE_200, 'answer': arr}
+            except:
+                return {'code': CODE_400, 'answer': None}
+
         def put(id, **kwargs) -> None:
             """
             Method:         PUT\n
@@ -256,16 +247,4 @@ class API:
             except:
                 return {'code': CODE_400, 'answer': None}
         
-        def delete(ids : list[int]) -> None:
-            """
-            Method:         DELETE\n
-            Description:    delete booking rows by ids\n
-            Return:         None
-            """
-
-            try:
-                for i in range(len(ids)):
-                    db.Booking().deleteTableByID(ids[i])
-                return {'code': CODE_200, 'answer': "Success"}
-            except:
-                return {'code': CODE_400, 'answer': None}
+    
